@@ -1,4 +1,11 @@
 {
+    "hello": "Hallo",
+    "on_boarding_statement": "Order Your Book Now!",
+    "login": "Login",
+  "register": "Register",
+  "welcome_back_glad_to_see_you_Again": "Welcome back! Glad to see you, Again! ",
+  "hello_Register_to_get_started": "Hello! Register to get started",
+  "enter_your_email": "Enter your email",
+  "enter_your_password": "Enter your password"
 
-  "hello": "Hallo"
 }

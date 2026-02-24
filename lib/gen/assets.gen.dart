@@ -27,12 +27,19 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+
   /// File path: assets/images/spalash_back_ground.png
   AssetGenImage get spalashBackGround =>
       const AssetGenImage('assets/images/spalash_back_ground.png');
 
+  /// File path: assets/images/splash_android12.png
+  AssetGenImage get splashAndroid12 =>
+      const AssetGenImage('assets/images/splash_android12.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [spalashBackGround];
+  List<AssetGenImage> get values => [logo, spalashBackGround, splashAndroid12];
 }
 
 class $AssetsTranslationsGen {
