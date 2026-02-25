@@ -22,3 +22,4 @@ void main()async{
 
 
 // dart run easy_localization:generate --source-dir ./assets/translations -f keys -o locale_keys.g.dart -O lib/gen
+//flutter pub run build_runner build --delete-conflicting-outputs

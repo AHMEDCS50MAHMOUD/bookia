@@ -15,7 +15,7 @@ class AppButton extends StatelessWidget {
       onTap:onTap,
       child: Container(
         width: double.infinity,
-       padding: EdgeInsets.symmetric(vertical: 19.h),
+       padding: EdgeInsets.symmetric(vertical: 14.h),
        alignment: Alignment.center,
        decoration: BoxDecoration(
          borderRadius: BorderRadius.circular(8.r),
