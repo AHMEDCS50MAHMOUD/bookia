@@ -10,7 +10,8 @@ class AppTextFormField extends StatefulWidget {
   final String labelText;
   final bool isPassword;
   final TextInputType? keyboardType;
-  const AppTextFormField({super.key, required this.labelText,  this.isPassword=false, this.keyboardType});
+  final TextEditingController? controller;
+  const AppTextFormField({super.key, required this.labelText,  this.isPassword=false, this.keyboardType, this.controller});
 
   @override
   State<AppTextFormField> createState() => _AppTextFormFieldState();
@@ -22,6 +23,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+     controller: widget.controller,
       keyboardType:widget.keyboardType ,
       cursorColor: AppColors.primaryColor,
       obscureText: widget.isPassword&&isObscure,

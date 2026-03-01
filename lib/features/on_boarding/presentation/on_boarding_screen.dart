@@ -1,10 +1,15 @@
+import 'package:bookia/core/helper/extentions.dart';
+import 'package:bookia/core/routing/routes.dart';
 import 'package:bookia/core/theme/app_text_style.dart';
 import 'package:bookia/core/widgets/app_button.dart';
-import 'package:bookia/features/outh/presentation/login_screen.dart';
+import 'package:bookia/features/auth/cubit/auth_cubit.dart';
+import 'package:bookia/features/auth/presentation/login_screen.dart';
 import 'package:bookia/gen/assets.gen.dart';
 import 'package:bookia/gen/locale_keys.g.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
@@ -50,7 +55,7 @@ class OnBoardingScreen extends StatelessWidget {
               Spacer(),
               AppButton(title: LocaleKeys.login.tr(),
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+                context.pushNamed(Routes.loginScreen);
               },
               ),
               SizedBox(height: 15.h,),
