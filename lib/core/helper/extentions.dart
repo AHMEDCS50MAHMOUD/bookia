@@ -12,5 +12,8 @@ pushNamedAndRemoveUntil(String routName){
 
 }
 pop()=>Navigator.of(this).pop();
+void pushReplacementNamed(String routeName, {Object? arguments}) {
+  Navigator.of(this).pushReplacementNamed(routeName, arguments: arguments);
+}
 
 }

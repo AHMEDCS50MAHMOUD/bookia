@@ -14,8 +14,9 @@ class AuthCubit extends Cubit<AuthState> {
 final response=await AuthRepo.login(email: email, password: password);
   if(response){
     emit(AuthSuccessState());
-  }else{}
+  }else{
     emit(AuthErrorState());
+  }
   }
 
 }

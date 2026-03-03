@@ -7,7 +7,7 @@ class AuthRepo{
   static final Dio _dio=Dio();
   static Future <bool>login({required String email,required String password})async{
   try{
-    final response= await _dio.post("https://api.codingarabic.online/api/auth/login",
+    final response= await _dio.post("https://codingarabic.online/api/login",
         data: {
 
           "email":email,
