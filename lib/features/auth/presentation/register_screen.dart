@@ -38,97 +38,100 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   @override
-
-  Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Colors.white,
-    body: SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 22.h),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const AppBackButton(),
-              SizedBox(height: 29.h),
-              Text(
-                LocaleKeys.register.tr(),
-                style: AppTextStyle.text30Regular,
-              ),
-              SizedBox(height: 32.h),
-              AppTextFormField(
-                labelText: LocaleKeys.username.tr(),
-                controller: _userNameController,
-              ),
-              SizedBox(height: 15.h),
-              AppTextFormField(
-                labelText: LocaleKeys.enter_your_email.tr(),
-                controller: _emailController,
-              ),
-              SizedBox(height: 15.h),
-              AppTextFormField(
-                labelText: LocaleKeys.enter_your_password.tr(),
-                isPassword: true,
-                controller: _passwordController,
-              ),
-              SizedBox(height: 15.h),
-              AppTextFormField(
-                labelText: LocaleKeys.confirm_password.tr(),
-                isPassword: true,
-                controller: _confirmPasswordController,
-              ),
-              SizedBox(height: 30.h),
-              BlocListener<AuthCubit, AuthState>(
-                listener: (context, state) {
-                  if (state is AuthSuccessState) {
-                    context.pushReplacementNamed(Routes.homeScreen);
-                  } else if (state is AuthErrorState) {
-                    showDialog(
-                      context: context,
-                      builder: (context) => const AlertDialog(
-                          title: Text('Register Error')),
-                    );
-                  }
-                },
-                child: AppButton(
-                  onTap: () {
-                    // if (_formKey.currentState!.validate()) {
-                    //   context.read<AuthCubit>().register(
-                    //         email: _emailController.text,
-                    //         password: _passwordController.text,
-                    //         name: _userNameController.text,
-                    //       );
-                    // }
-                  },
-                  title: LocaleKeys.register.tr(),
-                ),
-              ),
-              SizedBox(height: 120.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 12.h),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const AppBackButton(),
+                  SizedBox(height: 28.h),
                   Text(
-                    LocaleKeys.already_have_account.tr(),
-                    style: AppTextStyle.text15Regular,
+                    LocaleKeys.register.tr(),
+                    style: AppTextStyle.text30Regular,
                   ),
-                  TextButton(
-                    onPressed: () {
-                      context.pop();
+                  SizedBox(height: 32.h),
+                  AppTextFormField(
+                    labelText: LocaleKeys.username.tr(),
+                    controller: _userNameController,
+                  ),
+                  SizedBox(height: 15.h),
+                  AppTextFormField(
+                    labelText: LocaleKeys.enter_your_email.tr(),
+                    controller: _emailController,
+                  ),
+                  SizedBox(height: 15.h),
+                  AppTextFormField(
+                    labelText: LocaleKeys.enter_your_password.tr(),
+                    isPassword: true,
+                    controller: _passwordController,
+                  ),
+                  SizedBox(height: 15.h),
+                  AppTextFormField(
+                    labelText: LocaleKeys.confirm_password.tr(),
+                    isPassword: true,
+                    controller: _confirmPasswordController,
+                  ),
+                  SizedBox(height: 30.h),
+                  BlocListener<AuthCubit, AuthState>(
+                    listener: (context, state) {
+                      if (state is AuthSuccessState) {
+                        context.pushReplacementNamed(Routes.homeScreen);
+                      } else if (state is AuthErrorState) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => const AlertDialog(
+                              title: Text('Register Error')),
+                        );
+                      }
                     },
-                    child: Text(
-                      LocaleKeys.login_now.tr(),
-                      style: AppTextStyle.text15Regular.copyWith(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: AppButton(
+                      onTap: () {
+                        // if (_formKey.currentState!.validate()) {
+                        //   context.read<AuthCubit>().register(
+                        //         email: _emailController.text,
+                        //         password: _passwordController.text,
+                        //         name: _userNameController.text,
+                        //       );
+                        // }
+                      },
+                      title: LocaleKeys.register.tr(),
                     ),
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        LocaleKeys.already_have_account.tr(),
+                        style: AppTextStyle.text15Regular,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          context.pop();
+                        },
+                        child: Text(
+                          LocaleKeys.login_now.tr(),
+                          style: AppTextStyle.text15Regular.copyWith(
+                            color: AppColors.primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
