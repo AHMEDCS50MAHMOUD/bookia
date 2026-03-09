@@ -33,7 +33,7 @@ class BooksGridview extends StatelessWidget {
           );
         } else if (state is GetBestSellerError) {
           return const SliverToBoxAdapter(
-            child: Center(child: Text("Failed to load books. Please try again.")),
+            child: Center(child: Text("Failed to load books.Please try again.")),
           );
         }
         // Fallback for initial state before loading starts
