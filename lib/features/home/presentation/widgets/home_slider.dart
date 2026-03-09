@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 
@@ -24,14 +25,22 @@ class _HomeSliderState extends State<HomeSlider> {
       || current is GetHomeSlidersError
       ,
       builder: (context, state) {
-        if(state is GetHomeSlidersLoading){
-          return CircularProgressIndicator();
-        } else if(state is GetHomeSlidersSuccess) {
+        if( state is GetHomeSlidersLoading || state is GetBestSellerLoading){
+          return Skeletonizer(
+            enabled: true,
+            child: Container(
+             height: 200.h,
+             width: double.infinity,
+              color: Colors.grey,
+            ),
+          );
+        }
+        else if(state is GetHomeSlidersSuccess) {
           return Column(
             children: [
               CarouselSlider(
                   options: CarouselOptions(
-                    height: 200.0,
+                    height: 200.0.h,
                     autoPlay: true,
                     viewportFraction: 1,
                     onPageChanged: (index, reason) {

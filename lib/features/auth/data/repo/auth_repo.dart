@@ -1,21 +1,23 @@
+import 'package:bookia/core/networking/api_constant.dart';
+import 'package:bookia/core/networking/dio_factory.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo{
 
-  static final Dio _dio=Dio();
+
   static Future <bool>login({required String email,required String password})async{
   try{
-    final response= await _dio.post("https://codingarabic.online/api/login",
+    final response= await DioFactory.dio?.post(ApiConstant.login,
         data: {
 
           "email":email,
           "password":password
         }
     );
-    if(response.statusCode==200){
-     await saveToken(response.data["data"]["token"].toString());
+    if(response?.statusCode==200){
+     await saveToken(response?.data["data"]["token"].toString()??"");
       return true;
     }else{
       return false;

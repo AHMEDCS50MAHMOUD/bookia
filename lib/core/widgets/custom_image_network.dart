@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CustomImageNetwork extends StatelessWidget {
   final String url;
@@ -15,7 +16,13 @@ class CustomImageNetwork extends StatelessWidget {
       fit: BoxFit.cover,
       imageUrl: url,
       progressIndicatorBuilder: (context, url, downloadProgress) =>
-          Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+          Center(child:Skeletonizer(child: Container(
+            height: height,
+            width: width,
+            color: Colors.grey,
+          )
+
+          )) ,
       errorWidget: (context, url, error) => Icon(Icons.error),
     );
   }
