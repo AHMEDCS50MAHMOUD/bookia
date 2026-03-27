@@ -3,18 +3,19 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-class DioFactory{
- static Dio? dio;
- static init(){
-    dio=Dio(
-      BaseOptions(
-        baseUrl:ApiConstant.baseUrl ,
-       connectTimeout:  Duration(seconds: 30),
+class DioFactory {
+  static Dio? dio;
 
+  static void init() {
+    dio = Dio(BaseOptions(
+      baseUrl: ApiConstant.baseUrl,
+      connectTimeout: const Duration(seconds: 30),
+      headers: {
+        "Accept": "application/json",
+        if (ApiConstant.token != null) "Authorization": "Bearer ${ApiConstant.token}",
+      },
+    ));
 
-
-      )
-    );
     dio?.interceptors.add(PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
@@ -23,16 +24,11 @@ class DioFactory{
         error: true,
         compact: true,
         maxWidth: 90,
-        enabled: kDebugMode,
-        filter: (options, args){
-          // don't print requests with uris containing '/posts'
-          if(options.path.contains('/posts')){
-            return false;
-          }
-          // don't print responses with unit8 list data
-          return !args.isResponse || !args.hasUint8ListData;
-        }
-    ));
+        enabled: kDebugMode));
+  }
 
+  static void setTokenAfterLogin(String token) {
+    ApiConstant.token = token;
+    dio?.options.headers["Authorization"] = "Bearer $token";
   }
 }

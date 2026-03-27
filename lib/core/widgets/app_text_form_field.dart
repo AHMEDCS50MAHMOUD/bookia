@@ -11,7 +11,8 @@ class AppTextFormField extends StatefulWidget {
   final bool isPassword;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
-  const AppTextFormField({super.key, required this.labelText,  this.isPassword=false, this.keyboardType, this.controller});
+   final void Function(String)? onChanged;
+  const AppTextFormField({super.key, required this.labelText,  this.isPassword=false, this.keyboardType, this.controller, this.onChanged});
 
   @override
   State<AppTextFormField> createState() => _AppTextFormFieldState();
@@ -27,6 +28,8 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       keyboardType:widget.keyboardType ,
       cursorColor: AppColors.primaryColor,
       obscureText: widget.isPassword&&isObscure,
+          onChanged:widget.onChanged
+      ,
       onTapUpOutside: (y){FocusScope.of(context).unfocus();},
       decoration:  InputDecoration(
         filled: true,
@@ -64,5 +67,6 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
 
       ),
     );
+
   }
 }

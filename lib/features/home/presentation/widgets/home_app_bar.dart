@@ -1,3 +1,5 @@
+import 'package:bookia/core/helper/extentions.dart';
+import 'package:bookia/core/routing/routes.dart';
 import 'package:bookia/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +14,8 @@ class HomeAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,    children: [
         Assets.images.logo.image(width: 100.w),
-        SvgPicture.asset(Assets.icons.search)
+       InkWell (onTap:(){context.pushNamed(Routes.searchScreen);} ,
+           child: SvgPicture.asset(Assets.icons.search))
       ],
     );
   }
