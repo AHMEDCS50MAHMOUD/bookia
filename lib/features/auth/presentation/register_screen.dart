@@ -22,23 +22,9 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _userNameController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final authCubit = context.read<AuthCubit>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -59,50 +45,60 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(height: 32.h),
                   AppTextFormField(
                     labelText: LocaleKeys.username.tr(),
-                    controller: _userNameController,
+                    controller: authCubit.userNameController,
                   ),
                   SizedBox(height: 15.h),
                   AppTextFormField(
                     labelText: LocaleKeys.enter_your_email.tr(),
-                    controller: _emailController,
+                    controller: authCubit.emailController,
                   ),
                   SizedBox(height: 15.h),
                   AppTextFormField(
                     labelText: LocaleKeys.enter_your_password.tr(),
                     isPassword: true,
-                    controller: _passwordController,
+                    controller: authCubit.passwordController,
                   ),
                   SizedBox(height: 15.h),
                   AppTextFormField(
                     labelText: LocaleKeys.confirm_password.tr(),
                     isPassword: true,
-                    controller: _confirmPasswordController,
+                    controller: authCubit.confirmPasswordController,
                   ),
                   SizedBox(height: 30.h),
-                  BlocListener<AuthCubit, AuthState>(
+                  BlocConsumer<AuthCubit, AuthState>(
                     listener: (context, state) {
-                      if (state is AuthSuccessState) {
-                        context.pushReplacementNamed(Routes.homeScreen);
+                      if (state is AuthLoadingState) {
+                        showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (context) => Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
+                        );
+                      } else if (state is AuthSuccessState) {
+                        context.pop(); // Close loading dialog
+                        context.pushNamedAndRemoveUntil(Routes.bottomNavBarScreen);
                       } else if (state is AuthErrorState) {
+                        context.pop(); // Close loading dialog
                         showDialog(
                           context: context,
                           builder: (context) => const AlertDialog(
-                              title: Text('Register Error')),
+                            title: Text('Register Error'),
+                            content: Text("Failed to create account. Please try again."),
+                          ),
                         );
                       }
                     },
-                    child: AppButton(
-                      onTap: () {
-                        // if (_formKey.currentState!.validate()) {
-                        //   context.read<AuthCubit>().register(
-                        //         email: _emailController.text,
-                        //         password: _passwordController.text,
-                        //         name: _userNameController.text,
-                        //       );
-                        // }
-                      },
-                      title: LocaleKeys.register.tr(),
-                    ),
+                    builder: (context, state) {
+                      return AppButton(
+                        onTap: () {
+                          authCubit.register();
+                        },
+                        title: LocaleKeys.register.tr(),
+                      );
+                    },
                   ),
                   SizedBox(height: 20.h),
                   Row(

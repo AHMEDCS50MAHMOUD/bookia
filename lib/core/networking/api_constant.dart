@@ -1,6 +1,6 @@
 class ApiConstant {
   static String? token;
-  static const baseUrl = 'https://codingarabic.online/api/';
+  static const baseUrl = "https://codingarabic.online/api/";
   static const login = "login";
   static const slider = "sliders";
   static const bestSeller = "products-bestseller";
@@ -10,4 +10,7 @@ class ApiConstant {
   static const addToCart = "add-to-cart";
   static const removeFromCart = "remove-from-cart";
   static const updateCart = "update-cart";
+  static const wishlist = "wishlist";
+  static const addToWishlist = "add-to-wishlist";
+  static const removeFromWishlist = "remove-from-wishlist";
 }

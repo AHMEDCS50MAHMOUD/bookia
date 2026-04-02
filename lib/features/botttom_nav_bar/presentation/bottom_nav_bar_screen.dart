@@ -4,6 +4,7 @@ import 'package:bookia/features/cart/presentation/cart_screen.dart';
 import 'package:bookia/features/home/cubit/home_cubit.dart';
 import 'package:bookia/features/home/presentation/home_screen.dart';
 import 'package:bookia/features/profile/presentation/profile_screen.dart';
+import 'package:bookia/features/wishlist/cubit/wisllist_cubit.dart';
 import 'package:bookia/features/wishlist/presentation/wishlist_screen.dart';
 import 'package:bookia/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,9 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
         ),
         BlocProvider(
           create: (context) => CartCubit(),
+        ),
+        BlocProvider(
+          create: (context) => WishlistCubit(),
         ),
       ],
       child: Scaffold(

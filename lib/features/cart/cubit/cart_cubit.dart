@@ -13,23 +13,40 @@ class CartCubit extends Cubit<CartState> {
     try {
       final response = await CartRepo.getCart();
       if (response != null) {
-        final cartModel = CartModel.fromJson(response as Map<String, dynamic>);
-        if (cartModel.data != null) {
+
+        if (response.data != null) {
           emit(
             GetCartSuccess(
-              cartModel.data!.cartItems ?? [],
-              cartModel.data!.total ?? 0,
+              response.data!.cartItems ?? [],
+              response.data!.total ?? 0,
             ),
           );
         } else {
-          emit(GetCartError('Cart is empty'));
+          emit(GetCartSuccess([], 0));
         }
       } else {
-        emit(GetCartError('Failed to load cart'));
+        emit(GetCartError('Failed to load cart data'));
       }
     } catch (e) {
       debugPrint('===> GetCart Exception: $e');
-      emit(GetCartError('Failed to load cart'));
+      emit(GetCartError('An error occurred while loading cart'));
+    }
+  }
+
+  Future<void> addToCart(int productId) async {
+
+    try {
+      final success = await CartRepo.addToCart(productId);
+      if (success) {
+        emit(AddToCartSuccess());
+
+        await getCart();
+      } else {
+        emit(AddToCartError('Failed to add item to cart'));
+      }
+    } catch (e) {
+      debugPrint('===> AddToCart Exception: $e');
+      emit(AddToCartError('Error adding item to cart'));
     }
   }
 
@@ -41,11 +58,11 @@ class CartCubit extends Cubit<CartState> {
         emit(RemoveFromCartSuccess());
         await getCart();
       } else {
-        emit(RemoveFromCartError('Failed to remove item from cart'));
+        emit(RemoveFromCartError('Failed to remove item'));
       }
     } catch (e) {
       debugPrint('===> RemoveFromCart Exception: $e');
-      emit(RemoveFromCartError('Failed to remove item from cart'));
+      emit(RemoveFromCartError('Error removing item'));
     }
   }
 
@@ -53,7 +70,6 @@ class CartCubit extends Cubit<CartState> {
     required int cartItemId,
     required int quantity,
   }) async {
-    emit(UpdateCartItemLoading());
     try {
       final success = await CartRepo.updateCartItem(
         cartItemId: cartItemId,
@@ -63,27 +79,11 @@ class CartCubit extends Cubit<CartState> {
         emit(UpdateCartItemSuccess());
         await getCart();
       } else {
-        emit(UpdateCartItemError('Failed to update cart item'));
+        emit(UpdateCartItemError('Failed to update quantity'));
       }
     } catch (e) {
       debugPrint('===> UpdateCartItem Exception: $e');
-      emit(UpdateCartItemError('Failed to update cart item'));
-    }
-  }
-
-  Future<void> addToCart(int productId) async {
-    emit(AddToCartLoading());
-    try {
-      final success = await CartRepo.addToCart(productId);
-      if (success) {
-        emit(AddToCartSuccess());
-        await getCart();
-      } else {
-        emit(AddToCartError('Failed to add item to cart'));
-      }
-    } catch (e) {
-      debugPrint('===> AddToCart Exception: $e');
-      emit(AddToCartError('Failed to add item to cart'));
+      emit(UpdateCartItemError('Error updating quantity'));
     }
   }
 }
