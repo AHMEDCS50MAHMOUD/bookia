@@ -63,9 +63,7 @@ graph TD
 ```
 
 ## 🎬 Project Demo
-
-[20260402-0536-03.2817487.mp4](../../Users/Ahmed%20Darwish/AppData/Local/Packages/Microsoft.ScreenSketch_8wekyb3d8bbwe/TempState/Recordings/20260402-0536-03.2817487.mp4)
-
+[20260402-0543-07.3226741.mp4](../../Users/Ahmed%20Darwish/AppData/Local/Packages/Microsoft.ScreenSketch_8wekyb3d8bbwe/TempState/Recordings/20260402-0543-07.3226741.mp4)
 ## 📸 Screenshots
 
 ### Authentication & Home
