@@ -65,7 +65,11 @@ graph TD
 ## 🎬 Project Demo
 
 
-https://github.com/user-attachments/assets/e6e78937-89f1-4a2e-9cf1-891f2f88c252
+
+
+https://github.com/user-attachments/assets/53be56b5-b7d5-45f9-95c9-706b5b2dbcd4
+
+
 
 
 ## 📸 Screenshots
