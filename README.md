@@ -76,6 +76,7 @@ graph TD
 <img width="313" height="682" alt="image" src="https://github.com/user-attachments/assets/ce37b8e9-8e76-48e2-9c05-7831c04fd637" />
 <img width="253" height="552" alt="image" src="https://github.com/user-attachments/assets/78515b10-db8f-4b27-868e-f29c858549f3" />
 <img width="327" height="705" alt="image" src="https://github.com/user-attachments/assets/b24026ce-a86d-49e7-983b-af9b851d8991" />
+
 ### Authentication & Home
 | Splash | Onboarding | Login | Home |
 | :---: | :---: | :---: | :---: |
@@ -97,7 +98,7 @@ graph TD
 ### Run Locally
 
 ```bash
-git clone https://github.com/your-username/bookia.git
+git clone https://github.com/AHMEDCS50MAHMOUD/bookia/edit/master
 cd bookia
 flutter pub get
 flutter run
