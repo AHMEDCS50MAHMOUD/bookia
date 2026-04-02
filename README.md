@@ -63,7 +63,11 @@ graph TD
 ```
 
 ## 🎬 Project Demo
-[20260402-0543-07.3226741.mp4](../../Users/Ahmed%20Darwish/AppData/Local/Packages/Microsoft.ScreenSketch_8wekyb3d8bbwe/TempState/Recordings/20260402-0543-07.3226741.mp4)
+
+
+https://github.com/user-attachments/assets/e6e78937-89f1-4a2e-9cf1-891f2f88c252
+
+
 ## 📸 Screenshots
 <img width="275" height="600" alt="image" src="https://github.com/user-attachments/assets/f6027253-091a-4477-a3ac-51b516f8f050" />
 <img width="276" height="612" alt="image" src="https://github.com/user-attachments/assets/20da873e-c75f-4092-b9a7-1ab6de1e1f12" />
